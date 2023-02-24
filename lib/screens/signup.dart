@@ -6,9 +6,8 @@ import 'package:filepod/screens/login.dart';
 import 'package:filepod/screens/success.dart';
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/textField.dart';
+import 'package:filepod/utils/texts.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import '../utils/filePodLeftBar.dart';

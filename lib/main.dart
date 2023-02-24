@@ -1,10 +1,20 @@
-import 'package:filepod/screens/signup.dart';
+import 'package:filepod/screens/dashboardMain.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
+  // Step 2
+  WidgetsFlutterBinding.ensureInitialized();
+  // Step 3
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]).then((value) => runApp(const FilePod()));
   runApp(const FilePod());
 }
+
+String route = 'dashboard';
 
 class FilePod extends StatelessWidget {
   const FilePod({super.key});
@@ -14,7 +24,7 @@ class FilePod extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(textTheme: GoogleFonts.interTextTheme()),
       debugShowCheckedModeBanner: false,
-      home: const Signup(),
+      home: const DashboardMain(),
     );
   }
 }
