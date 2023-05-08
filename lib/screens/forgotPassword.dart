@@ -3,11 +3,13 @@
 import 'dart:async';
 import 'dart:ffi';
 
+import 'package:filepod/config/routes.dart';
 import 'package:filepod/screens/checkEmail.dart';
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/textField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../utils/filePodLeftBar.dart';
@@ -81,7 +83,7 @@ class _ForgoPasswordState extends State<ForgoPassword> {
                             width: double.infinity,
                             child: CustomTextField(
                               obsText: false,
-                              email: email,
+                              textEditingController: email,
                               emptyFields: emptyFields,
                               iconData: Icons.email_outlined,
                               mainText: 'Registered Email ID',
@@ -108,10 +110,7 @@ class _ForgoPasswordState extends State<ForgoPassword> {
                               correctText = true;
                             });
                             Timer(Duration(seconds: 3), () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (_) {
-                                return CheckEMail();
-                              }));
+                              Get.toNamed(routeCheckEmail);
                             });
                           }
                         },
@@ -153,7 +152,7 @@ class _ForgoPasswordState extends State<ForgoPassword> {
                       SizedBox(
                         height: 40.0,
                       ),
-                      Container(
+                      SizedBox(
                         height: 20.0,
                         width: double.infinity,
                         child: Row(

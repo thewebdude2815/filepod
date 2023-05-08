@@ -1,13 +1,15 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_local_variable
 
 import 'dart:async';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:filepod/config/routes.dart';
 import 'package:filepod/screens/login.dart';
 import 'package:filepod/screens/success.dart';
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/textField.dart';
 import 'package:filepod/utils/texts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../utils/filePodLeftBar.dart';
@@ -116,7 +118,7 @@ class _SignupState extends State<Signup> {
                             width: double.infinity,
                             child: CustomTextField(
                               obsText: false,
-                              email: email,
+                              textEditingController: email,
                               emptyFields: emptyFields,
                               iconData: Icons.email_outlined,
                               mainText: 'Email id',
@@ -131,7 +133,7 @@ class _SignupState extends State<Signup> {
                             width: double.infinity,
                             child: CustomTextField(
                               obsText: false,
-                              email: name,
+                              textEditingController: name,
                               emptyFields: emptyFields,
                               iconData: EvaIcons.personOutline,
                               mainText: 'Full Name',
@@ -146,7 +148,7 @@ class _SignupState extends State<Signup> {
                             width: double.infinity,
                             child: CustomTextField(
                               obsText: false,
-                              email: number,
+                              textEditingController: number,
                               emptyFields: emptyFields,
                               iconData: EvaIcons.phoneOutline,
                               mainText: 'Phone Number',
@@ -230,10 +232,7 @@ class _SignupState extends State<Signup> {
                               correctText = true;
                             });
                             Timer(Duration(seconds: 3), () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (_) {
-                                return VerificaionPage();
-                              }));
+                              Get.toNamed(routeSuccess);
                             });
                           }
                         },
@@ -290,10 +289,7 @@ class _SignupState extends State<Signup> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (_) {
-                                  return LoginPage();
-                                }));
+                                Get.toNamed(routeLogin);
                               },
                               child: Text(
                                 " Sign in",

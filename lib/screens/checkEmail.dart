@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, unused_element, file_names
+
 import 'package:filepod/utils/appConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,15 +25,12 @@ class _CheckEMailState extends State<CheckEMail> {
       body: SafeArea(
         child: Row(
           children: [
-            //  Checking if the display is of tablet size
-
-            // left bar that includes logo (Location for FilePodLeftBar() is in utils folder)
             if (isTablet(context))
               const Expanded(
                 child: FilePodLeftBar(),
               ),
 
-            // Right bar 
+            // Right bar
             Expanded(
               child: SingleChildScrollView(
                 child: Container(

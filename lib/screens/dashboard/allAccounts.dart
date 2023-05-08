@@ -1,3 +1,4 @@
+import 'package:filepod/config/routes.dart';
 import 'package:filepod/screens/dashboard/allAccountsSingle.dart';
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/texts.dart';
@@ -5,6 +6,7 @@ import 'package:filepod/utils/widgets/accountNameChip.dart';
 import 'package:filepod/utils/widgets/allAccountsWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../utils/widgets/allAccountsGridView.dart';
 
@@ -225,14 +227,7 @@ class _AllAccountsState extends State<AllAccounts> {
                           padding: const EdgeInsets.only(bottom: 12.0),
                           child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) {
-                                      return const AllAccountsSingle();
-                                    },
-                                  ),
-                                );
+                                Get.toNamed(routeAllAccountsSingle);
                               },
                               child: const AllAccountsWidget()),
                         );
@@ -258,7 +253,6 @@ class _AllAccountsState extends State<AllAccounts> {
                   )
                 ],
               ),
-
               const SizedBox(
                 height: 12,
               ),
@@ -280,39 +274,6 @@ class _AllAccountsState extends State<AllAccounts> {
                         AllAccountsGridView(),
                       ],
                     ),
-              // SizedBox(
-              //   height: 300,
-              //   child: Row(
-              //     children: const [
-              //       Padding(
-              //         padding: EdgeInsets.only(right: 12),
-              //         child: AllAccountsGridView(),
-              //       ),
-              //       Padding(
-              //         padding: EdgeInsets.only(right: 12),
-              //         child: AllAccountsGridView(),
-              //       ),
-              //       Padding(
-              //         padding: EdgeInsets.only(right: 12),
-              //         child: AllAccountsGridView(),
-              //       )
-              //     ],
-              //   ),
-              // )
-              // SizedBox(
-              //   height: 200,
-              //   width: 200,
-              //   child: ListView.builder(
-              //       // scrollDirection: Axis.horizontal,
-              //       shrinkWrap: true,
-              //       itemCount: 3,
-              //       itemBuilder: (context, index) {
-              //         return const Padding(
-              //           padding: EdgeInsets.only(right: 12),
-              //           child: AllAccountsGridView(),
-              //         );
-              //       }),
-              // )
             ],
           ),
         ),

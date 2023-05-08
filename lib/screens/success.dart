@@ -1,11 +1,12 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, missing_required_param
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, missing_required_param, unused_element, unused_local_variable
 
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:filepod/config/routes.dart';
 import 'package:filepod/screens/login.dart';
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/filePodLeftBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class VerificaionPage extends StatefulWidget {
   const VerificaionPage({super.key});
@@ -26,11 +27,7 @@ class _VerificaionPageState extends State<VerificaionPage> {
       body: SafeArea(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: [
-             //  Checking if the display is of tablet size
-
-            // left bar that includes logo (Location for FilePodLeftBar() is in utils folder)
             if (isTablet(context)) Expanded(child: FilePodLeftBar()),
 
             //  Right Bar
@@ -101,10 +98,7 @@ class _VerificaionPageState extends State<VerificaionPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) {
-                            return LoginPage();
-                          }));
+                          Get.toNamed(routeLogin);
                         },
                         child: Container(
                           height: 45.0,

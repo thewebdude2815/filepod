@@ -1,15 +1,15 @@
-// ignore_for_file: file_names
-
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/texts.dart';
 import 'package:flutter/material.dart';
 
-class AppStoreWidget extends StatelessWidget {
+class SettingsAllAppsListWidget extends StatelessWidget {
   final String name;
   final String imageUrl;
-  const AppStoreWidget({
+  final String size;
+  const SettingsAllAppsListWidget({
     required this.imageUrl,
     required this.name,
+    required this.size,
     super.key,
   });
 
@@ -31,12 +31,21 @@ class AppStoreWidget extends StatelessWidget {
             imageUrl,
             height: 80,
           ),
-          const SizedBox(
-            height: 8,
-          ),
           Text(
             name,
             style: dashboardheadingThree,
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Center(
+            child: Text(
+              size,
+              style: dashboardbodyTwo.copyWith(
+                  color: formFilledTextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500),
+            ),
           ),
         ],
       ),

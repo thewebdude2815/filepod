@@ -38,16 +38,18 @@ class SingleDriveWidget extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                      color: driveBgColor,
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Center(
-                    child: SvgPicture.asset(
-                      driveLogo,
-                      height: 25,
+                Expanded(
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                        color: driveBgColor,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        driveLogo,
+                        height: 25,
+                      ),
                     ),
                   ),
                 ),
@@ -55,19 +57,23 @@ class SingleDriveWidget extends StatelessWidget {
                   width: 12,
                 ),
                 driveAccounts > 0
-                    ? Center(
-                        child: Text(
-                          '+${driveAccounts.toString()}',
-                          style: dashboardText.copyWith(
-                              fontWeight: FontWeight.w600),
+                    ? Expanded(
+                        child: Center(
+                          child: Text(
+                            '+${driveAccounts.toString()}',
+                            style: dashboardText.copyWith(
+                                fontWeight: FontWeight.w600),
+                          ),
                         ),
                       )
                     : Container(),
                 const Spacer(),
-                const Icon(
-                  Icons.more_vert_outlined,
-                  color: greyColor11,
-                  size: 20,
+                const Expanded(
+                  child: Icon(
+                    Icons.more_vert_outlined,
+                    color: greyColor11,
+                    size: 20,
+                  ),
                 ),
               ],
             ),
@@ -121,7 +127,7 @@ class SingleDriveWidget extends StatelessWidget {
               value: 0.5,
               backgroundColor: Colors.grey.withOpacity(0.2),
               valueColor: const AlwaysStoppedAnimation<Color>(
-                Color(0xFF1EA362),
+                greenColor3,
               ),
             ),
           )

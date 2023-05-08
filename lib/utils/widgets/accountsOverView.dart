@@ -4,6 +4,7 @@ import 'package:filepod/utils/widgets/appStoreWidget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class AccountsOverView extends StatelessWidget {
   const AccountsOverView({super.key});
@@ -22,7 +23,7 @@ class AccountsOverView extends StatelessWidget {
             height: 8,
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
             height: MediaQuery.of(context).size.height * 0.45,
             decoration: BoxDecoration(
               color: whiteColor,
@@ -161,7 +162,7 @@ class AccountsOverView extends StatelessWidget {
                                               const Spacer(),
                                               GestureDetector(
                                                 onTap: () {
-                                                  Navigator.pop(context);
+                                                  Get.back();
                                                 },
                                                 child: const CircleAvatar(
                                                   radius: 15,
@@ -282,144 +283,41 @@ class AccountsOverView extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
-                  Row(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/drive.svg',
-                            height: 12,
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            'andrew@gmail.com',
-                            style: dashboardTextThree,
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/drive.svg',
-                            height: 12,
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            'andrew@gmail.com',
-                            style: dashboardTextThree,
-                          ),
-                        ],
-                      ),
-                    ],
+                  const YourAccountRowWidget(),
+                  const SizedBox(
+                    height: 8,
                   ),
+                  const YourAccountRowWidget(),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const YourAccountRowWidget(),
                   const SizedBox(
                     height: 8,
                   ),
                   Row(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/drive.svg',
-                            height: 12,
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            'andrew@gmail.com',
-                            style: dashboardTextThree,
-                          ),
-                        ],
+                      Expanded(
+                        child: Row(
+                          // mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/drive.svg',
+                              height: 12,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Expanded(
+                              // flex: 2,
+                              child: Text(
+                                'andrew@gmail.com',
+                                style: dashboardTextThree,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      const Spacer(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/drive.svg',
-                            height: 12,
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            'andrew@gmail.com',
-                            style: dashboardTextThree,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/drive.svg',
-                            height: 12,
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            'andrew@gmail.com',
-                            style: dashboardTextThree,
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/drive.svg',
-                            height: 12,
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            'andrew@gmail.com',
-                            style: dashboardTextThree,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    children: [
-                      Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/drive.svg',
-                            height: 12,
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            'andrew@gmail.com',
-                            style: dashboardTextThree,
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
                       Container(
                         height: 20,
                         width: 100,
@@ -446,6 +344,65 @@ class AccountsOverView extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class YourAccountRowWidget extends StatelessWidget {
+  const YourAccountRowWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: Row(
+            // mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SvgPicture.asset(
+                'assets/drive.svg',
+                height: 12,
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                // flex: 2,
+                child: Text(
+                  'andrew@gmail.com',
+                  style: dashboardTextThree,
+                ),
+              ),
+            ],
+          ),
+        ),
+        // const Spacer(),
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Spacer(),
+              SvgPicture.asset(
+                'assets/drive.svg',
+                height: 12,
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                flex: 2,
+                child: Text(
+                  'andrew@gmail.com',
+                  style: dashboardTextThree,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

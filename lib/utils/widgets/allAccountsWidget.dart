@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/texts.dart';
 import 'package:flutter/gestures.dart';

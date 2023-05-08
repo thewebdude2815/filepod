@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, missing_required_param
 
 import 'dart:async';
-
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:filepod/config/routes.dart';
 import 'package:filepod/screens/forgotPassword.dart';
 import 'package:filepod/screens/signup.dart';
 import 'package:filepod/screens/success.dart';
@@ -12,6 +12,7 @@ import 'package:filepod/utils/textField.dart';
 import 'package:filepod/utils/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
@@ -69,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                       Text(
                           "Sign in to manage your account, notificattions and more.",
                           style: subHeadingFont),
-                      Container(
+                      SizedBox(
                         height: 40.0,
                         width: double.infinity,
                         child: Row(
@@ -149,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                         width: double.infinity,
                         child: CustomTextField(
                           obsText: false,
-                          email: userId,
+                          textEditingController: userId,
                           emptyFields: emptyFields,
                           iconData: EvaIcons.personOutline,
                           mainText: 'User ID',
@@ -182,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                           ),
                           obsText: showandhide,
-                          email: password,
+                          textEditingController: password,
                           emptyFields: emptyFields,
                           iconData: EvaIcons.lockOutline,
                           mainText: 'Password',
@@ -234,10 +235,7 @@ class _LoginPageState extends State<LoginPage> {
                           Container(),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (_) {
-                                return ForgoPassword();
-                              }));
+                              Get.toNamed(routeForgotPassword);
                             },
                             child: Text(
                               "Forgot Password?",
@@ -266,10 +264,7 @@ class _LoginPageState extends State<LoginPage> {
                               correctText = true;
                             });
                             Timer(Duration(seconds: 3), () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (_) {
-                                return VerificaionPage();
-                              }));
+                              Get.toNamed(routeSuccess);
                             });
                           }
                         },
@@ -326,10 +321,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (_) {
-                                  return Signup();
-                                }));
+                                Get.toNamed(routeSignup);
                               },
                               child: Text(
                                 " Sign up",

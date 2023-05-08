@@ -1,7 +1,6 @@
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/headerSection.dart';
 import 'package:filepod/utils/sideBar.dart';
-
 import 'package:filepod/utils/texts.dart';
 import 'package:filepod/utils/widgets/allAccountSingleWidget.dart';
 import 'package:flutter/gestures.dart';

@@ -6,6 +6,7 @@ import 'package:filepod/screens/dashboard/allAccountsSingle.dart';
 import 'package:filepod/screens/dashboard/appStore.dart';
 import 'package:filepod/screens/dashboard/dashboard.dart';
 import 'package:filepod/screens/dashboard/myApps.dart';
+import 'package:filepod/screens/dashboard/settings/settings.dart';
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/headerSection.dart';
 import 'package:filepod/utils/texts.dart';
@@ -29,11 +30,6 @@ class _DashboardMainState extends State<DashboardMain> {
           children: [
             LayoutBuilder(
               builder: (context, constraints) {
-                final isLandscape =
-                    MediaQuery.of(context).orientation == Orientation.landscape;
-                final sidebarWidth =
-                    isLandscape ? 150.0 : constraints.maxWidth * 0.3;
-
                 return Container(
                   decoration: const BoxDecoration(
                     color: whiteColor,
@@ -41,7 +37,8 @@ class _DashboardMainState extends State<DashboardMain> {
                       right: BorderSide(color: borderColorDashboard),
                     ),
                   ),
-                  width: sidebarWidth,
+                  // width: sidebarWidth,
+                  width: 150,
                   child: Column(
                     children: [
                       const SizedBox(
@@ -311,39 +308,55 @@ class _DashboardMainState extends State<DashboardMain> {
                       const SizedBox(
                         height: 12,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 24,
-                            width: 4,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(12),
-                                bottomRight: Radius.circular(12),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            route = 'settings';
+                          });
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 24,
+                              width: 4,
+                              decoration: BoxDecoration(
+                                color: route == 'settings'
+                                    ? buttonBgColor
+                                    : Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: SvgPicture.asset(
-                              'assets/sidebarSvgs/settings.svg',
-                              height: 20,
+                            Expanded(
+                              child: SvgPicture.asset(
+                                'assets/sidebarSvgs/settings.svg',
+                                height: 20,
+                                color: route == 'settings'
+                                    ? buttonBgColor
+                                    : Color(
+                                        0xFF78828B,
+                                      ),
+                              ),
                             ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Text(
-                              'Settings',
-                              textAlign: TextAlign.left,
-                              style: dashboardHeadingTwo.copyWith(
-                                  color: Color(
-                                    0xFF78828B,
-                                  ),
-                                  fontWeight: FontWeight.w400),
+                            Expanded(
+                              flex: 2,
+                              child: Text(
+                                'Settings',
+                                textAlign: TextAlign.left,
+                                style: route == 'settings'
+                                    ? dashboardHeadingTwo
+                                    : dashboardHeadingTwo.copyWith(
+                                        color: Color(
+                                          0xFF78828B,
+                                        ),
+                                        fontWeight: FontWeight.w400),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -366,7 +379,9 @@ class _DashboardMainState extends State<DashboardMain> {
                                     ? AllAccounts()
                                     : route == 'allAccontsSingle'
                                         ? AllAccountsSingle()
-                                        : Dashboard(),
+                                        : route == 'settings'
+                                            ? Settings()
+                                            : Dashboard(),
                   ],
                 ),
               ),
