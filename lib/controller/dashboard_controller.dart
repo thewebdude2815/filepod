@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-class SettingsController extends GetxController implements GetxService {
+class DashboardController extends GetxController implements GetxService {
   RxString currentPage = 'main'.obs;
 
-  void changeSettingsPage(String name) {
+  void changeDashboardPage(String name) {
     currentPage.value = name;
     update();
   }

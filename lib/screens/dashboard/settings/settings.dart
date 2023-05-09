@@ -23,7 +23,7 @@ class Settings extends StatelessWidget {
           ? const SettingsMain()
           : settingsController.currentPage.value == 'profile'
               ? const Profile()
-              : settingsController.currentPage.value == 'forgotPassword'
+              : settingsController.currentPage.value == 'changePassword'
                   ? const ChangePassword()
                   : settingsController.currentPage.value == 'aboutFilepod'
                       ? const AboutFilepod()

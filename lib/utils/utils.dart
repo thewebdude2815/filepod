@@ -1,9 +1,13 @@
+import 'package:filepod/config/routes.dart';
+import 'package:filepod/controller/settings_controller.dart';
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+
+import '../main.dart';
 
 class Utils {
   static void showToastMessage(String message) {
@@ -84,8 +88,9 @@ class Utils {
   }
 
   static PopupMenuItem buildPopupMenuItemDownload(
-      String title, String svg, int position) {
+      String title, String svg, int position, void Function() onTap) {
     return PopupMenuItem(
+      onTap: onTap,
       child: SizedBox(
         width: 180,
         child: Row(
@@ -144,6 +149,7 @@ class Utils {
             Center(
               child: Text(
                 'Do You Want To Shutdown Filepod',
+                textAlign: TextAlign.center,
                 style: dashboardTextThree.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,

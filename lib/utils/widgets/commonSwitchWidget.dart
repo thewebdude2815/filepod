@@ -26,7 +26,8 @@ class _CommonSwitchWidgetState extends State<CommonSwitchWidget> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: widget.height,
-      width: double.infinity,
+      // width: double.infinity,
+      // width: 60,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -51,6 +52,7 @@ class _CommonSwitchWidgetState extends State<CommonSwitchWidget> {
           widget.isColumn
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
                       widget.text,

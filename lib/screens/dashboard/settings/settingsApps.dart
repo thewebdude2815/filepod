@@ -1,3 +1,4 @@
+import 'package:filepod/controller/settings_controller.dart';
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/texts.dart';
 import 'package:filepod/utils/widgets/list_and_grid_view_widget.dart';
@@ -6,6 +7,7 @@ import 'package:filepod/utils/widgets/settings_all_apps_list_widget.dart';
 import 'package:filepod/utils/widgets/settings_apps_all_apps_enabled_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SettingsApps extends StatefulWidget {
   const SettingsApps({super.key});
@@ -19,122 +21,139 @@ class _SettingsAppsState extends State<SettingsApps> {
   bool isListView = false;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 6,
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 12,
-              ),
-              RichText(
-                text: TextSpan(
-                    text: 'Settings /',
-                    style: dashboardheadingThree,
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: '  Apps',
-                          style: dashboardText.copyWith(
-                              color: greyColor5, fontWeight: FontWeight.w500),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              // navigate to desired screen
-                            })
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Expanded(
+        flex: 6,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 12,
+                ),
+                RichText(
+                  text: TextSpan(
+                      text: 'Settings /',
+                      style: dashboardheadingThree,
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Get.find<SettingsController>()
+                              .changeSettingsPage('main');
+                        },
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: '  Apps',
+                            style: dashboardText.copyWith(
+                                color: greyColor5, fontWeight: FontWeight.w500),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                // navigate to desired screen
+                              })
+                      ]),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(children: const [
+                      SettingsAppsAllAppsEnabledWidget(
+                        isSelected: true,
+                        text: 'All Apps',
+                      ),
+                      SettingsAppsAllAppsEnabledWidget(
+                        isSelected: false,
+                        text: 'Enabled',
+                      ),
                     ]),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(children: const [
-                    SettingsAppsAllAppsEnabledWidget(
-                      isSelected: true,
-                      text: 'All Apps',
-                    ),
-                    SettingsAppsAllAppsEnabledWidget(
-                      isSelected: false,
-                      text: 'Enabled',
-                    ),
-                  ]),
-                  Row(
-                    children: [
-                      ListAndGridViewWidget(
-                        isListView: true,
-                        isSelected: isListView,
-                        onPressed: () {
-                          setState(() {
-                            isListView = true;
-                          });
-                        },
-                      ),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      ListAndGridViewWidget(
-                        isListView: false,
-                        isSelected: !isListView,
-                        onPressed: () {
-                          setState(() {
-                            isListView = false;
-                          });
-                        },
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 28,
-              ),
-              !isListView
-                  ? SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          SettingsAllAppsListWidget(
-                            imageUrl: 'assets/images/box.png',
-                            name: 'Box',
-                            size: '28.3 MB',
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          SettingsAllAppsListWidget(
-                            imageUrl: 'assets/images/gDrive.png',
-                            name: 'Google Drive',
-                            size: '28.3 MB',
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          SettingsAllAppsListWidget(
-                            imageUrl: 'assets/images/db.png',
-                            name: 'Dropbox',
-                            size: '28.3 MB',
-                          ),
-                        ],
-                      ),
+                    Row(
+                      children: [
+                        ListAndGridViewWidget(
+                          isListView: true,
+                          isSelected: isListView,
+                          onPressed: () {
+                            setState(() {
+                              isListView = true;
+                            });
+                          },
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        ListAndGridViewWidget(
+                          isListView: false,
+                          isSelected: !isListView,
+                          onPressed: () {
+                            setState(() {
+                              isListView = false;
+                            });
+                          },
+                        ),
+                      ],
                     )
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 3,
-                      itemBuilder: (context, index) {
-                        return const SettingsAllAppsGridWidget(
-                          imageUrl: 'assets/images/db.png',
-                          name: 'Dropbox',
-                          size: '28.3 MB',
-                        );
-                      }),
-              const SizedBox(
-                height: 40,
-              ),
-            ],
+                  ],
+                ),
+                const SizedBox(
+                  height: 28,
+                ),
+                !isListView
+                    ? SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: const [
+                            SettingsAllAppsListWidget(
+                              imageUrl: 'assets/images/box.png',
+                              name: 'Box',
+                              size: '28.3 MB',
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            SettingsAllAppsListWidget(
+                              imageUrl: 'assets/images/gDrive.png',
+                              name: 'Google Drive',
+                              size: '28.3 MB',
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            SettingsAllAppsListWidget(
+                              imageUrl: 'assets/images/db.png',
+                              name: 'Dropbox',
+                              size: '28.3 MB',
+                            ),
+                          ],
+                        ),
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 3,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Get.find<SettingsController>()
+                                  .changeSettingsPage('appsSingle');
+                            },
+                            child: const SettingsAllAppsGridWidget(
+                              imageUrl: 'assets/images/db.png',
+                              name: 'Dropbox',
+                              size: '28.3 MB',
+                            ),
+                          );
+                        }),
+                const SizedBox(
+                  height: 40,
+                ),
+              ],
+            ),
           ),
         ),
       ),

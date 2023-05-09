@@ -26,7 +26,7 @@ class FilePod extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(textTheme: GoogleFonts.interTextTheme()),
       debugShowCheckedModeBanner: false,
-      home: const DashboardMain(),
+      // home: const DashboardMain(),
       getPages: Routes.routes,
       initialRoute: routeDashboardMain,
     );

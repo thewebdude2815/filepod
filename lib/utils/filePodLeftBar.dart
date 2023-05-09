@@ -67,7 +67,7 @@ class FilePodLeftBar extends StatelessWidget {
               CircleAvatar(
                 radius: 22,
                 child: Container(
-                  child: Center(
+                  child: const Center(
                     child: Icon(
                       Icons.play_arrow,
                       color: Color(0xFF442EBD),

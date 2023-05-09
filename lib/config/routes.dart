@@ -1,3 +1,4 @@
+import 'package:filepod/controller/dashboard_controller.dart';
 import 'package:filepod/controller/settings_controller.dart';
 import 'package:filepod/screens/checkEmail.dart';
 import 'package:filepod/screens/dashboard/allAccounts.dart';
@@ -37,6 +38,8 @@ class Routes {
         name: routeDashboardMain,
         page: () => const DashboardMain(),
         binding: BindingsBuilder(() {
+          Get.lazyPut<DashboardController>(() => DashboardController());
+
           Get.lazyPut<SettingsController>(() => SettingsController());
         })),
     GetPage(name: routeMyApps, page: () => const MyApps()),

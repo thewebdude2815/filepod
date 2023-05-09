@@ -1,9 +1,13 @@
 // ignore_for_file: sort_child_properties_last
 
+import 'package:filepod/controller/dashboard_controller.dart';
+import 'package:filepod/controller/settings_controller.dart';
+import 'package:filepod/main.dart';
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class HeaderSection extends StatefulWidget {
   const HeaderSection({super.key});
@@ -58,10 +62,10 @@ class _HeaderSectionState extends State<HeaderSection> {
               ),
             ),
             const Spacer(),
-            GestureDetector(
-              onTap: () {
-                Utils.deleteAlert(context);
-              },
+            PopupMenuButton(
+              onSelected: (value) {},
+              offset: const Offset(0.0, 33),
+              itemBuilder: (ctx) => [Utils.shutDownFilePod()],
               child: CircleAvatar(
                 radius: 12,
                 backgroundColor: dashboardCirclesBgColor,
@@ -77,7 +81,7 @@ class _HeaderSectionState extends State<HeaderSection> {
             PopupMenuButton(
               onSelected: (value) {},
               offset: const Offset(0.0, 33),
-              itemBuilder: (ctx) => [Utils.shutDownFilePod()],
+              itemBuilder: (ctx) => [Utils.restartFilePod()],
               child: CircleAvatar(
                 radius: 12,
                 backgroundColor: dashboardCirclesBgColor,
@@ -98,12 +102,27 @@ class _HeaderSectionState extends State<HeaderSection> {
               itemBuilder: (ctx) => [
                 Utils.nameAndEmail(),
                 Utils.buildPopupMenuItemDownload(
-                    'My Profile', 'assets/person.svg', 12),
+                    'My Profile', 'assets/person.svg', 12, () {
+                  Get.find<SettingsController>().changeSettingsPage('profile');
+                  Get.find<DashboardController>()
+                      .changeDashboardPage('settings');
+                }),
                 Utils.buildPopupMenuItemDownload(
-                    'Change Password', 'assets/lock3.svg', 12),
+                    'Change Password', 'assets/lock3.svg', 12, () {
+                  Get.find<SettingsController>()
+                      .changeSettingsPage('changePassword');
+                  Get.find<DashboardController>()
+                      .changeDashboardPage('settings');
+                }),
                 Utils.divider(),
                 Utils.buildPopupMenuItemDownload(
-                    'Sign out', 'assets/time.svg', 12),
+                    'Sign out', 'assets/time.svg', 12, () {
+                  Get.find<SettingsController>()
+                      .changeSettingsPage('changePassword');
+                  setState(() {
+                    route = 'settings';
+                  });
+                }),
               ],
               child: Row(
                 children: [
