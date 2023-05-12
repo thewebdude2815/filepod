@@ -1,8 +1,10 @@
+import 'package:filepod/config/routes.dart';
 import 'package:filepod/utils/appConstants.dart';
 import 'package:filepod/utils/texts.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DriveOverView extends StatefulWidget {
@@ -41,7 +43,11 @@ class _DriveOverViewState extends State<DriveOverView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Drive Overview', style: dashboardheadingThree),
+          GestureDetector(
+              onTap: () {
+                Get.toNamed(routeLogin);
+              },
+              child: Text('Drive Overview', style: dashboardheadingThree)),
           const SizedBox(
             height: 8,
           ),

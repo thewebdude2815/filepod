@@ -28,7 +28,7 @@ class FilePod extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: const DashboardMain(),
       getPages: Routes.routes,
-      initialRoute: routeDashboardMain,
+      initialRoute: routeLogin,
     );
   }
 }

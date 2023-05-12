@@ -264,7 +264,7 @@ class _LoginPageState extends State<LoginPage> {
                               correctText = true;
                             });
                             Timer(Duration(seconds: 3), () {
-                              Get.toNamed(routeSuccess);
+                              Get.toNamed(routeDashboardMain);
                             });
                           }
                         },

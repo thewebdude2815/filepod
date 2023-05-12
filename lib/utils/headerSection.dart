@@ -1,9 +1,12 @@
 // ignore_for_file: sort_child_properties_last
 
+import 'package:filepod/config/routes.dart';
+
 import 'package:filepod/controller/dashboard_controller.dart';
 import 'package:filepod/controller/settings_controller.dart';
-import 'package:filepod/main.dart';
+import 'package:filepod/screens/login.dart';
 import 'package:filepod/utils/appConstants.dart';
+import 'package:filepod/utils/texts.dart';
 import 'package:filepod/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -117,12 +120,11 @@ class _HeaderSectionState extends State<HeaderSection> {
                 Utils.divider(),
                 Utils.buildPopupMenuItemDownload(
                     'Sign out', 'assets/time.svg', 12, () {
-                  Get.find<SettingsController>()
-                      .changeSettingsPage('changePassword');
-                  setState(() {
-                    route = 'settings';
+                  // Navigator.pop(context);
+                  Future.delayed(Duration(milliseconds: 1), () {
+                    return Get.toNamed(routeLogin);
                   });
-                }),
+                })
               ],
               child: Row(
                 children: [
